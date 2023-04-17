@@ -5,48 +5,59 @@ ApplicationWindow {
     id: root
     title: "QML ImGui Gallery"
 
-    // MenuBar {
-    //     Menu {
-    //         title: "Demos"
-
-    //         MenuItem {
-    //             text: "Calculator"
-    //             onTriggered: {
-    //                 calculator.open()
-    //             }
-    //         }
-
-    //         MenuItem {
-    //             text: "Widgets Gallery"
-    //             onTriggered: {
-    //                 widgets.open()
-    //             }
-    //         }
-
-    //         MenuItem {
-    //             text: "Dialogs Gallery"
-    //             onTriggered: {
-    //                 dialogs.open()
-    //             }
-    //         }
-
-    //         MenuItem {
-    //             text: "Layouts Gallery"
-    //             onTriggered: {
-    //                 layouts.open()
-    //             }
-    //         }
-    //     }
-
-    //     Menu {
-    //         title: "Help"
-    //     }
-    // }
-
     Window {
         title: "Demo Windows"
+        flags: Window.MenuBar
+
+        MenuBar {
+            Menu {
+                title: "Windows"
+
+                Menu {
+                    title: "Demo Windows"
+
+                    MenuItem {
+                        text: "Calculator"
+                        onClicked: {
+                        }
+                    }
+
+                    MenuItem {
+                        text: "Widgets Gallery"
+                        onClicked: {
+                            widgets.open()
+                        }
+                    }
+
+                    MenuItem {
+                        text: "Dialogs Gallery"
+                        onClicked: {
+                        }
+                    }
+
+                    MenuItem {
+                        text: "Layouts Gallery"
+                        onClicked: {
+                        }
+                    }
+                }
+
+                MenuItem {
+                    text: "Close All"
+                    onClicked: {
+                        widgets.window.destroy()
+                        widgets.window = null
+                    }
+                }
+            }
+
+            Menu {
+                title: "Help"
+            }
+        }
 
         Button {
+            id: widgets
             text: "Widgets Gallery"
 
             property WidgetsGallery window

@@ -2,8 +2,6 @@
 
 #include <QEvent>
 
-#include <imgui.h>
-
 ZWindow::ZWindow(QObject *parent)
     : ZWidget{parent}
 {
@@ -64,13 +62,27 @@ void ZWindow::setTitle(const QString &txt)
     emit titleChanged(QPrivateSignal{});
 }
 
+ZWindow::WindowFlags ZWindow::flags() const
+{
+    return m_windowFlags;
+}
+
+void ZWindow::setFlags(WindowFlags fls)
+{
+    if (m_windowFlags == fls) {
+        return;
+    }
+    m_windowFlags = fls;
+    emit flagsChanged(QPrivateSignal{});
+}
+
 bool ZWindow::update()
 {
     if (!visible()) {
         return false;
     }
 
-    ImGui::Begin(m_title.toUtf8().constData());
+    ImGui::Begin(m_title.toUtf8().constData(), nullptr, static_cast<int>(m_windowFlags));
     for (auto *child : m_children) {
         child->update();
     }

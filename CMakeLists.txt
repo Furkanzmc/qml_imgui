@@ -59,7 +59,7 @@ set(imgui_src
     ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp)
 
 set(source_files src/plugin.cpp src/ZWidget.cpp src/ZWindow.cpp
-                 src/ZApplicationWindow.cpp src/ZText.cpp)
+                 src/ZApplicationWindow.cpp src/ZText.cpp src/ZButton.cpp)
 
 qt_add_qml_module(
   qml_imgui

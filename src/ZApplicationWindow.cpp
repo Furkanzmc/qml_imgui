@@ -28,7 +28,7 @@ void glfw_error_callback(int error, const char *description)
 ZApplicationWindow::ZApplicationWindow(QObject *parent)
     : ZWindow{parent}
 {
-    m_timer.setInterval(60);
+    m_timer.setInterval(16);
     m_timer.setSingleShot(true);
 }
 
@@ -40,10 +40,6 @@ ZApplicationWindow::~ZApplicationWindow()
 
     glfwDestroyWindow(m_window);
     glfwTerminate();
-}
-
-void ZApplicationWindow::classBegin()
-{
 }
 
 void ZApplicationWindow::componentComplete()
@@ -75,7 +71,7 @@ void ZApplicationWindow::componentComplete()
 #endif
 
     // Create window with graphics context
-    m_window = glfwCreateWindow(1280, 720, title().toUtf8().constData(), NULL, NULL);
+    m_window = glfwCreateWindow(480, 600, title().toUtf8().constData(), NULL, NULL);
     assert(m_window);
 
     glfwMakeContextCurrent(m_window);
@@ -124,7 +120,7 @@ bool ZApplicationWindow::update()
             ImGui::NewFrame();
         }
 
-        for (auto *child : children()) {
+        for (ZWidget *child : children()) {
             child->update();
         }
 

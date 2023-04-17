@@ -24,7 +24,7 @@ void ZText::setText(const QString &txt)
 
 bool ZText::update()
 {
-    ImGui::Text(m_text.toUtf8().constData());
+    ImGui::Text("%s", m_text.toUtf8().constData());
 
     return true;
 }

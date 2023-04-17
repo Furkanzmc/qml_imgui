@@ -26,18 +26,23 @@ public:
     void setTitle(const QString &txt);
 
     bool update() override;
+    void removeChild(QObject *obj) final;
+    void addChild(QObject *obj) final;
 
     bool event(QEvent *event) final;
+    Q_INVOKABLE void close();
 
 protected:
-    std::vector<ZWidget*> children() const;
+    std::vector<ZWidget *> children() const;
 
 signals:
     void titleChanged(QPrivateSignal);
+    void closed(QPrivateSignal);
 
 private:
     QString m_title;
     std::vector<ZWidget *> m_children;
+    std::vector<QObject *> m_data;
 };
 
 #endif
